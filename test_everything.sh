@@ -2,8 +2,7 @@
 # Comprehensive test script for Config Guardian
 # This script validates that everything works correctly
 
-# Don't exit on errors - we want to collect all test results
-set +e
+set -e  # Exit on any error
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"
@@ -378,15 +377,10 @@ WATCH_PID=$!
 sleep 2
 kill $WATCH_PID 2>/dev/null || true
 
-if grep -q "watching" /tmp/watch_output.txt || grep -q "Watching" /tmp/watch_output.txt; then
+if grep -q "Watching" /tmp/watch_output.txt; then
     pass_test "Watch mode initializes correctly"
 else
-    # Check if watch mode at least started
-    if grep -q "Started watching" /tmp/watch_output.txt; then
-        pass_test "Watch mode initializes correctly"
-    else
-        fail_test "Watch mode" "Did not initialize properly"
-    fi
+    fail_test "Watch mode" "Did not initialize properly"
 fi
 
 # Test 15: Plugin API
