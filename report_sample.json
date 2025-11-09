@@ -1,0 +1,55 @@
+{
+  "timestamp": "2025-11-09T20:27:36.642772Z",
+  "scanned_root": "examples",
+  "stats": {
+    "total_files": 4,
+    "valid_files": 1,
+    "invalid_files": 3,
+    "total_issues": 4
+  },
+  "valid_files": [
+    {
+      "path": "examples/valid_config.yaml"
+    }
+  ],
+  "invalid_files": [
+    {
+      "path": "examples/invalid_replicas.yaml",
+      "issues": [
+        {
+          "field": "replicas",
+          "message": "replicas must be between 1 and 50",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "path": "examples/env_lowercase_keys.yaml",
+      "issues": [
+        {
+          "field": "env",
+          "message": "env key 'api_url' must be uppercase",
+          "severity": "error"
+        },
+        {
+          "field": "env",
+          "message": "env key 'debug_mode' must be uppercase",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "path": "examples/missing_required_key.yaml",
+      "issues": [
+        {
+          "field": "required_keys",
+          "message": "Missing required keys: replicas",
+          "severity": "error"
+        }
+      ]
+    }
+  ],
+  "registry_counts": {
+    "docker.io": 1
+  }
+}

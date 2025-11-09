@@ -1,0 +1,95 @@
+================================================================================
+HOW TO TEST THAT EVERYTHING WORKS
+================================================================================
+
+OPTION 1: AUTOMATIC TEST (RECOMMENDED) - Takes ~30 seconds
+==============================================================
+
+Just run this single command:
+
+    ./test_everything.sh
+
+Expected result:
+    ✓✓✓  ALL TESTS PASSED! CONFIG GUARDIAN IS READY!  ✓✓✓
+    57/57 tests passing
+
+If you see the success message above, EVERYTHING WORKS PERFECTLY! ✓
+
+
+OPTION 2: MANUAL STEP-BY-STEP TEST - Takes ~2 minutes
+========================================================
+
+Step 1: Setup (one-time)
+-------------------------
+cd config-guardian
+./setup.sh
+source venv/bin/activate
+
+Step 2: Run unit tests
+-----------------------
+pytest tests/ -v
+
+Expected: 14 passed in 0.06s
+
+
+Step 3: Run validator on examples
+----------------------------------
+python -m config_guardian --root examples --out report.json
+
+Expected output:
+    ============================================================
+    CONFIG GUARDIAN - VALIDATION SUMMARY
+    ============================================================
+    Total files:    4
+    Valid files:    1
+    Invalid files:  3
+    Total issues:   4
+    ============================================================
+
+
+Step 4: Check report was generated
+-----------------------------------
+cat report.json
+
+Expected: JSON file with validation results
+
+
+Step 5: Test watch mode (optional)
+-----------------------------------
+python -m config_guardian --root examples --watch
+
+Expected: "Watching examples for changes..."
+(Press Ctrl+C to stop)
+
+
+OPTION 3: QUICK 10-SECOND TEST
+================================
+
+source venv/bin/activate
+python -m config_guardian --root examples && echo "✓ SUCCESS!"
+
+
+TROUBLESHOOTING
+================
+
+If tests fail:
+1. Make sure you're in the config-guardian directory
+2. Make sure virtual environment is activated: source venv/bin/activate
+3. Reinstall dependencies: pip install -r requirements.txt
+4. Try again
+
+
+WHAT SUCCESS LOOKS LIKE
+========================
+
+✓ ./test_everything.sh shows "ALL TESTS PASSED!"
+✓ pytest shows "14 passed"
+✓ Validator creates report.json
+✓ No errors in terminal output
+
+
+YOU'RE DONE!
+============
+
+If all the above works, Config Guardian is ready to use on your actual configs!
+

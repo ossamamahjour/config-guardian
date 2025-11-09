@@ -1,0 +1,6 @@
+service: cache-service
+image: docker.io/redis:6.2.0
+# Missing replicas field
+env:
+  CACHE_SIZE: "1024"
+  EVICTION_POLICY: LRU

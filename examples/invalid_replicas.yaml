@@ -1,0 +1,6 @@
+service: worker
+image: gcr.io/worker:v2.0.1
+replicas: 75
+env:
+  WORKER_THREADS: "4"
+  QUEUE_NAME: TASKS

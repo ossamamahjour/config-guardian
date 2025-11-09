@@ -1,0 +1,7 @@
+service: frontend
+image: registry.example.com/frontend:v1.0.0
+replicas: 2
+env:
+  api_url: https://api.example.com
+  debug_mode: "true"
+  PORT: "8080"
