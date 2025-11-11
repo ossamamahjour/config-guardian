@@ -285,31 +285,3 @@ pytest tests/ -v
 # Lint code
 make lint
 ```
-
-## Troubleshooting
-
-```bash
-# Reset virtual environment
-deactivate
-rm -rf venv
-./setup.sh
-
-# Make scripts executable
-chmod +x setup.sh test_everything.sh
-```
-
-## License
-
-MIT License - See repository for details.
-
-## Contributing
-
-Contributions welcome! Please ensure:
-- All tests pass: `make test`
-- Code follows existing style
-- New features include tests
-- Documentation is updated
-
----
-
-**Config Guardian** - Built for reliable, scalable configuration validation.
