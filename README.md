@@ -2,6 +2,16 @@
 
 **Concurrent Configuration Deployment Validator** - A robust Python tool for validating YAML configuration files with extensible plugin support and real-time file watching capabilities.
 
+## Quick Test
+
+To verify everything works:
+
+```bash
+./test_everything.sh
+```
+
+Expected: `✓✓✓ ALL TESTS PASSED! CONFIG GUARDIAN IS READY! ✓✓✓`
+
 ## Features
 
 - 🔍 **Recursive File Discovery**: Efficiently scans directories for `.yaml` and `.yml` files
@@ -261,81 +271,32 @@ config-guardian/
 └── README.md                 # This file
 ```
 
-## WSL Ubuntu Examples
 
-```bash
-# Setup
-cd /mnt/c/Users/YourUsername/config-guardian  # Adjust path
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-
-# Run validation
-python -m config_guardian --root examples --out report.json
-
-# Run with more workers
-python -m config_guardian --root examples --workers 8
-
-# Watch mode with verbose logging
-python -m config_guardian --root examples --watch --verbose
-
-# Run tests
-pytest tests/ -v
-
-# Clean up
-make clean
-```
 
 ## Development
 
-### Running Tests
-
 ```bash
-# All tests
+# Run all tests
 pytest tests/ -v
 
-# Specific test file
-pytest tests/test_validator.py -v
+# Run comprehensive test suite
+./test_everything.sh
 
-# With coverage (if pytest-cov installed)
-pytest tests/ --cov=config_guardian --cov-report=html
-```
-
-### Code Quality
-
-```bash
-# Basic syntax check
+# Lint code
 make lint
-
-# Type checking (if mypy installed)
-mypy config_guardian/
-
-# Format code (if black installed)
-black config_guardian/ tests/
 ```
 
 ## Troubleshooting
 
-### Virtual Environment Issues
 ```bash
-# Deactivate and recreate if needed
+# Reset virtual environment
 deactivate
 rm -rf venv
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+./setup.sh
 
-### Permission Errors on WSL
-```bash
-# If files aren't executable
-chmod +x config_guardian/__main__.py
+# Make scripts executable
+chmod +x setup.sh test_everything.sh
 ```
-
-### Watch Mode Not Detecting Changes
-- Ensure `watchdog` is installed: `pip install watchdog`
-- Check file permissions in the watched directory
-- Some network drives may not support file system events
 
 ## License
 
